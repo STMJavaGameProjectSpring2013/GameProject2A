@@ -38,6 +38,12 @@ public class DeachoObject extends GameObject {
         octoY[6]=octoX[1];
         octoY[7]=octoX[0];
         
+        /*THIS NOTE IS TO SAY
+         *
+         * That we successfully synched stuff.
+         * yayyy.
+         */
+        
         
     }
     public void drawObject(Graphics g){
