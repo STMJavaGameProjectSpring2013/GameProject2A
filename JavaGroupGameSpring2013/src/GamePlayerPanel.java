@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,7 +21,8 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	private double dxRate = 0.01;
 	
 	//GameObject testObject;
-	MrRocheObject mrRTest;
+	//MrRocheObject mrRTest;
+	ArrayList<MrRocheObject> allMrRocheObjects = new ArrayList<MrRocheObject>();
        // DeachoObject decholol;
 	Timer t;
 	
@@ -32,10 +34,12 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		//testObject = new GameObject((int)(w/2), (int)(h/2));
 		//testObject.setDX(3.0);
 		//testObject.setDY(4.0);
-		
-		mrRTest = new MrRocheObject((int)(w/2), (int)(h/2));
-		mrRTest.setDX(0.25);
-		mrRTest.setDY(4.0);
+		//Add a first Mr. Roche Object
+		MrRocheObject mrRocheObj1;
+		mrRocheObj1 = new MrRocheObject((int)(w/2), (int)(h/2));
+		mrRocheObj1.setDX(0.25);
+		mrRocheObj1.setDY(4.0);
+		allMrRocheObjects.add(mrRocheObj1);
 		
 		
         // decholol=new DeachoObject(200,200);
@@ -52,9 +56,20 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		g.setColor(bColor);
 		g.fillRect(0, 0, panelW, panelH);
 		
-		mrRTest.drawObject(g);
+	
+		drawMrRocheObjects(g);
+		//mrRTest.drawObject(g);
 		//testObject.drawObject(g);
        // decholol.drawObject(g);
+	}
+	
+	
+	public void drawMrRocheObjects(Graphics g){
+		
+		int listLength = allMrRocheObjects.size();
+		for(int i = 0; i < listLength; ++i){
+			allMrRocheObjects.get(i).drawObject(g);
+		}
 	}
 
 
@@ -62,27 +77,20 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		mrRTest.moveObject();
-		mrRTest.checkBounds(panelW, panelH);
-		mrRTest.changeDX(dxRate);
-		if(mrRTest.getDX() > 0){
-			if(mrRTest.getDX() > 40){
-				dxRate*=-1;
-			}
-		}
-		
-		if(mrRTest.getDX() < 0){
-			if(mrRTest.getDX() < -40){
-				dxRate*=-1;
-			}
-		}
-		
-		System.out.println("The Angle is: " +mrRTest.getAngle());
-		//testObject.moveObject();
-        //decholol.moveObject();
-		//checkBounds();
-		repaint();
+		moveMrRocheObjects();
+		repaint();	
+	}
 	
+	public void moveMrRocheObjects(){
+		int listLength = allMrRocheObjects.size();
+		for(int i = 0; i < listLength; ++i){
+			allMrRocheObjects.get(i).moveObject();
+			allMrRocheObjects.get(i).checkBounds(panelW,panelH);
+			allMrRocheObjects.get(i).setCrazyDX();
+			if(allMrRocheObjects.get(i).checkSpawnTime()==true){
+				
+			}
+		}
 		
 	}
 	
@@ -159,6 +167,8 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		
 		*/
 	}
+	
+
 	
 	
 	

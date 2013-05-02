@@ -78,5 +78,23 @@ public class MrRocheObject extends GameObject {
 		return degrees;
 	}
 	
+	public void setCrazyDX(){
+		double dxRate = .005;
+		
+		changeDX(dxRate);
+		if(getDX() > 0){
+			if(getDX() > 100){
+				dxRate*=-1;
+			}
+		}
+		
+		if(getDX() < 0){
+			if(getDX() < -100){
+				dxRate*=-1;
+			}
+		}
+		
+	}
+	
 
 }

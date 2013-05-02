@@ -9,13 +9,18 @@ public class GameObject {
 	int objW = 20, objH =20;
 	double dx, dy;
 	
+	long reproductionCycle = 30000;  //30 Seconds in Milliseconds
+	long timeOfCreation;
+	long nextSpawnTime = timeOfCreation+reproductionCycle;
+	
 	Color objColor = Color.white;
 	
 	//Constructors
-	public GameObject(int x, int y) {
+	public GameObject(int w, int h) {
 		System.out.println("I just created a game object");
-		xLoc = x;
-		yLoc = y;
+		xLoc = (int)(Math.random()*(w-100))+50;
+		yLoc = (int)(Math.random()*(w-100))+50;
+		timeOfCreation = System.currentTimeMillis();
 		
 	}
 
@@ -118,6 +123,19 @@ public class GameObject {
 		}
 		
 	
+	}
+	
+	public boolean checkSpawnTime() {
+		boolean timeToSpawn = false;
+		long curTime = System.currentTimeMillis();
+		if(curTime >= nextSpawnTime){
+			timeToSpawn=true;
+			nextSpawnTime = curTime + reproductionCycle;
+		}
+		
+		
+		
+		return timeToSpawn;
 	}
 
 }
