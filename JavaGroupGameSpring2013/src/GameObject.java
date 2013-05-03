@@ -15,7 +15,7 @@ public class GameObject {
 	/////////////////////////1367546758506
 	long timeOfCreation;
 	long nextSpawnTime;
-	long lifeCycle = 550000L;
+	long lifeCycle = 29900L;
 	long checkOutTime;
 	
 	Color objColor = Color.white;
@@ -24,14 +24,14 @@ public class GameObject {
 	public GameObject(int w, int h) {
 		count++;
 		whoAmI = count;
-		System.out.println("I just created a game object");
+		//System.out.println("I just created a game object");
 		xLoc = (int)(Math.random()*(w-100))+50;
 		yLoc = (int)(Math.random()*(w-100))+50;
 		timeOfCreation = System.currentTimeMillis();
-		nextSpawnTime = timeOfCreation+reproductionCycle;
-		checkOutTime = timeOfCreation+lifeCycle+(long)(Math.random()*100000);
-		//System.out.println("object Number " + count + " time of creation: " + timeOfCreation);
-		//System.out.println("Next Spawn Time for " + count + " is " + nextSpawnTime);
+		nextSpawnTime = timeOfCreation+reproductionCycle+(long)(Math.random()*8000);
+		checkOutTime = timeOfCreation+lifeCycle+(long)(Math.random()*10000);
+		System.out.println("object Number " + count + " time of creation: " + timeOfCreation);
+		System.out.println("CheckoutTime for " + count + " is " + checkOutTime);
 	}
 
 	

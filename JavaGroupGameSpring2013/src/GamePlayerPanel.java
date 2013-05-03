@@ -90,19 +90,23 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 			if(allMrRocheObjects.get(i).checkSpawnTime()==true){		
 				MrRocheObject mrRObj1;
 				mrRObj1 = new MrRocheObject(panelW,panelH);
-				mrRObj1.setDX(Math.random());
+				mrRObj1.setDX(Math.random()+.01);
 				mrRObj1.setDY(Math.random()*10);
 				allMrRocheObjects.add(mrRObj1);
 			}
 			
 			if(allMrRocheObjects.get(i).timeToKickIt() == true){
+				System.out.println("it is time to Kick It for arrayList slot: " + i);
 				casualties.add(new Integer(i));
+				allMrRocheObjects.get(i).setDX(0.0);
+				allMrRocheObjects.get(i).setDY(0.0);
+				
 			}
 		}
 		
 		//Clean up list
 		for(int i = 0; i<casualties.size(); ++i){
-			allMrRocheObjects.remove(casualties.get(i));
+			allMrRocheObjects.remove(casualties.get(i).intValue());
 		}
 		
 	}
