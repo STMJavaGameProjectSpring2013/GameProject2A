@@ -58,8 +58,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		
 	
 		drawMrRocheObjects(g);
-		//mrRTest.drawObject(g);
-		//testObject.drawObject(g);
+		
        // decholol.drawObject(g);
 	}
 	
@@ -83,13 +82,27 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	
 	public void moveMrRocheObjects(){
 		int listLength = allMrRocheObjects.size();
+		ArrayList<Integer> casualties = new ArrayList<Integer>();
 		for(int i = 0; i < listLength; ++i){
 			allMrRocheObjects.get(i).moveObject();
 			allMrRocheObjects.get(i).checkBounds(panelW,panelH);
 			allMrRocheObjects.get(i).setCrazyDX();
-			if(allMrRocheObjects.get(i).checkSpawnTime()==true){
-				
+			if(allMrRocheObjects.get(i).checkSpawnTime()==true){		
+				MrRocheObject mrRObj1;
+				mrRObj1 = new MrRocheObject(panelW,panelH);
+				mrRObj1.setDX(Math.random());
+				mrRObj1.setDY(Math.random()*10);
+				allMrRocheObjects.add(mrRObj1);
 			}
+			
+			if(allMrRocheObjects.get(i).timeToKickIt() == true){
+				casualties.add(new Integer(i));
+			}
+		}
+		
+		//Clean up list
+		for(int i = 0; i<casualties.size(); ++i){
+			allMrRocheObjects.remove(casualties.get(i));
 		}
 		
 	}
@@ -97,75 +110,13 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	
 	public void checkBounds(){
 
-		//***** I HAVE MIGRATED THIS FUNCTIONALITY TO GAME OBJECT
-		//NOW EACH OBJECT JUST CHECKS ITS OWN BOUNDS
-		/*
-		int rightFrame = 15;
-		int bottomFrame = 30;
-		if(testObject.getDX() < 0){
-			if(testObject.getXLoc()-(int)(testObject.getObjWidth()/2) < 0){
-				testObject.setXLoc(0);
-				testObject.setDX(testObject.getDX()*-1);
-			}
-		}
-		
-		if(testObject.getDX() > 0){
-			if((testObject.getXLoc()+(int)(testObject.getObjWidth()/2)) > (panelW-rightFrame)){
-				testObject.setXLoc(panelW-(int)(testObject.getObjWidth()/2)-rightFrame);
-				testObject.setDX(testObject.getDX()*-1);
-			}
-		}
-		
-		
-		if(testObject.getDY() < 0){
-			if(testObject.getYLoc()-(int)(testObject.getObjHeight()/2) < 0){
-				testObject.setYLoc(0);
-				testObject.setDY(testObject.getDY()*-1);
-			}
-		}
-		
-		
-		if(testObject.getDY() > 0){
-			if(testObject.getYLoc()+(int)(testObject.getObjHeight()/2) > (panelH-bottomFrame)){
-				testObject.setYLoc(panelH-(int)(testObject.getObjHeight()/2)-bottomFrame);
-				testObject.setDY(testObject.getDY()*-1);
-			}
-		}
-		
+		/***** I HAVE MIGRATED THIS FUNCTIONALITY TO GAME OBJECT
+		*NOW EACH OBJECT JUST CHECKS ITS OWN BOUNDS.  Instead of
+		*calling this method, you just call yourObject.checkBounds( panelW, panelH)
+		--Mr. Roche
 		*/
 		
-		/*
-		if(decholol.getDX() < 0){
-			if(decholol.getXLoc()-(int)(decholol.getObjWidth()/2) < 0){
-				decholol.setXLoc(0);
-				decholol.setDX(decholol.getDX()*-1);
-			}
-		}
 		
-		if(decholol.getDX() > 0){
-			if((decholol.getXLoc()+(int)(decholol.getObjWidth()/2)) > (panelW-rightFrame)){
-				decholol.setXLoc(panelW-(int)(decholol.getObjWidth()/2)-rightFrame);
-				decholol.setDX(decholol.getDX()*-1);
-			}
-		}
-		
-		
-		if(decholol.getDY() < 0){
-			if(decholol.getYLoc()-(int)(decholol.getObjHeight()/2) < 0){
-				decholol.setYLoc(0);
-				decholol.setDY(decholol.getDY()*-1);
-			}
-		}
-		
-		
-		if(decholol.getDY() > 0){
-			if(decholol.getYLoc()+(int)(decholol.getObjHeight()/2) > (panelH-bottomFrame)){
-				decholol.setYLoc(panelH-(int)(decholol.getObjHeight()/2)-bottomFrame);
-				decholol.setDY(decholol.getDY()*-1);
-			}
-		}
-		
-		*/
 	}
 	
 

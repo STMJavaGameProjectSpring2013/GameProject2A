@@ -44,6 +44,9 @@ public class DeachoObject extends GameObject {
          * yayyy.
          */
         
+        /* Yes -- I think we sync! 
+         * --Mr. Roche
+         */
         
     }
     public void drawObject(Graphics g){

@@ -59,7 +59,7 @@ public class MrRocheObject extends GameObject {
 			}
 			
 			g.setColor(Color.WHITE);
-			g.drawString("Mr.Roche",  xLoc -(int)(objW/4) , yLoc+(int)(objH/2));
+			g.drawString(("Mr.Roche "+whoAmI),  xLoc -(int)(objW/4) , yLoc+(int)(objH/2));
 			
 		} else {
 		g.setColor(objColor);

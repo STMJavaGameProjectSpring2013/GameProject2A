@@ -4,24 +4,34 @@ import java.awt.Graphics;
 
 public class GameObject {
 
+	static int count = 0;
 	//Instance Variables
 	int xLoc, yLoc; 
 	int objW = 20, objH =20;
 	double dx, dy;
+	int whoAmI;
 	
-	long reproductionCycle = 30000;  //30 Seconds in Milliseconds
+	long reproductionCycle = 15000L;  //15 Seconds in Milliseconds
+	/////////////////////////1367546758506
 	long timeOfCreation;
-	long nextSpawnTime = timeOfCreation+reproductionCycle;
+	long nextSpawnTime;
+	long lifeCycle = 550000L;
+	long checkOutTime;
 	
 	Color objColor = Color.white;
 	
 	//Constructors
 	public GameObject(int w, int h) {
+		count++;
+		whoAmI = count;
 		System.out.println("I just created a game object");
 		xLoc = (int)(Math.random()*(w-100))+50;
 		yLoc = (int)(Math.random()*(w-100))+50;
 		timeOfCreation = System.currentTimeMillis();
-		
+		nextSpawnTime = timeOfCreation+reproductionCycle;
+		checkOutTime = timeOfCreation+lifeCycle+(long)(Math.random()*100000);
+		//System.out.println("object Number " + count + " time of creation: " + timeOfCreation);
+		//System.out.println("Next Spawn Time for " + count + " is " + nextSpawnTime);
 	}
 
 	
@@ -132,10 +142,18 @@ public class GameObject {
 			timeToSpawn=true;
 			nextSpawnTime = curTime + reproductionCycle;
 		}
-		
-		
-		
 		return timeToSpawn;
+	}
+	
+	
+	public boolean timeToKickIt(){
+		boolean timeToKick = false;
+		
+		long curTime = System.currentTimeMillis();
+		if(curTime >= checkOutTime){
+			timeToKick=true;
+		}
+		return timeToKick;
 	}
 
 }
