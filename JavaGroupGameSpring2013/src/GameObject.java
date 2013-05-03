@@ -7,9 +7,15 @@ public class GameObject {
 	static int count = 0;
 	//Instance Variables
 	int xLoc, yLoc; 
-	int objW = 20, objH =20;
+	int objW; 
+	int objH;
 	double dx, dy;
 	int whoAmI;
+	//this establishes a bounding box for the image for collision detection
+	//X and Y coordinates are relative(Extra) to xLoc and yLoc
+	int bBoxExtraX, bBoxExtraY;
+	int bBoxW, bBoxH;
+	
 	
 	long reproductionCycle = 15000L;  //15 Seconds in Milliseconds
 	/////////////////////////1367546758506
@@ -154,6 +160,30 @@ public class GameObject {
 			timeToKick=true;
 		}
 		return timeToKick;
+	}
+	
+	public void setBBoxExtras(int extraX, int extraY, int w, int h){
+	
+		bBoxExtraX = extraX; 
+		bBoxExtraY = extraY; 
+		bBoxW = w;
+		bBoxH = h;
+	}
+	
+	public int getBBoxX(){
+		return xLoc + bBoxExtraX;
+	}
+	
+	public int getBBoxY(){
+		return yLoc + bBoxExtraY;
+	}
+	
+	public int getBBoxW(){
+		return bBoxW;
+	}
+	
+	public int getBBoxH(){
+		return bBoxH;
 	}
 
 }

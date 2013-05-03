@@ -34,6 +34,8 @@ public class MrRocheObject extends GameObject {
 			objH = mainImage.getHeight(null);
 			pictureLoaded = true;
 			
+			this.setBBoxExtras(0, 25, objW, (int)(objH/2)+5);
+			
 			
 		} catch(IOException e){
 			System.out.println("We have a problem loading images in MrRoche Object");
@@ -57,6 +59,9 @@ public class MrRocheObject extends GameObject {
 				}
 				
 			}
+			
+			g.setColor(Color.RED);
+			g.drawRect(xLoc-(int)(objW/2)+bBoxExtraX, yLoc-(int)(objH/2)+bBoxExtraY,bBoxW, bBoxH);
 			
 			g.setColor(Color.WHITE);
 			g.drawString(("Mr.Roche "+whoAmI),  xLoc -(int)(objW/4) , yLoc+(int)(objH/2));
