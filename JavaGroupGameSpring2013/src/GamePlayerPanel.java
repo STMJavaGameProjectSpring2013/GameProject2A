@@ -13,6 +13,9 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
+
+	private static final String MrRocheObject = null;
+
 	
 	//Instance variables
 	private int panelW;
@@ -23,6 +26,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	//GameObject testObject;
 	//MrRocheObject mrRTest;
 	ArrayList<MrRocheObject> allMrRocheObjects = new ArrayList<MrRocheObject>();
+	ArrayList<GameObject> allGameObjects = new ArrayList<GameObject>();
        // DeachoObject decholol;
 	Timer t;
 	
@@ -31,15 +35,13 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		panelH = h;	
 		bColor = new Color((int)(Math.random()*25),(int)(Math.random()*25),(int)(Math.random()*150)+50);
 		
-		//testObject = new GameObject((int)(w/2), (int)(h/2));
-		//testObject.setDX(3.0);
-		//testObject.setDY(4.0);
-		//Add a first Mr. Roche Object
+		
 		MrRocheObject mrRocheObj1;
 		mrRocheObj1 = new MrRocheObject((int)(w/2), (int)(h/2));
 		mrRocheObj1.setDX(0.25);
 		mrRocheObj1.setDY(4.0);
-		allMrRocheObjects.add(mrRocheObj1);
+		//allMrRocheObjects.add(mrRocheObj1);
+		allGameObjects.add(mrRocheObj1);
 		
 		
         // decholol=new DeachoObject(200,200);
@@ -57,29 +59,37 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		g.fillRect(0, 0, panelW, panelH);
 		
 	
-		drawMrRocheObjects(g);
+		//drawMrRocheObjects(g);
+		drawAllGameObjects(g);
 		
        // decholol.drawObject(g);
 	}
 	
 	
-	public void drawMrRocheObjects(Graphics g){
+public void drawAllGameObjects(Graphics g){
 		
-		int listLength = allMrRocheObjects.size();
+		int listLength = allGameObjects.size();
 		for(int i = 0; i < listLength; ++i){
-			allMrRocheObjects.get(i).drawObject(g);
+			if(allGameObjects.get(i) instanceof MrRocheObject){
+				allGameObjects.get(i).drawObject(g);
+			}
+			
 		}
 	}
+	
+	
 
 
 
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		moveMrRocheObjects();
+		//moveMrRocheObjects();
+		moveAllObjects();
 		repaint();	
 	}
 	
+	/* we are migrating from just mR Roche objects....
 	public void moveMrRocheObjects(){
 		int listLength = allMrRocheObjects.size();
 		ArrayList<Integer> casualties = new ArrayList<Integer>();
@@ -111,6 +121,45 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		
 	}
 	
+	*/
+	
+	
+	
+	public void moveAllObjects(){
+		int listLength = allGameObjects.size();
+		ArrayList<Integer> casualties = new ArrayList<Integer>();
+		for(int i = 0; i < listLength; ++i){
+			allGameObjects.get(i).moveObject();
+			allGameObjects.get(i).checkBounds(panelW,panelH);
+			
+			//Now do stuff for Spawning....
+			if(allGameObjects.get(i).checkSpawnTime()==true){
+				if(allGameObjects.get(i) instanceof MrRocheObject){
+					doMrRocheSpawn();
+				}
+			}
+			//And do stuff for Logans Runs Timed obsolescence....
+			if(allGameObjects.get(i).timeToKickIt() == true){
+				System.out.println("it is time to Kick It for arrayList slot: " + i);
+				casualties.add(new Integer(i));
+				allGameObjects.get(i).setDX(0.0);
+				allGameObjects.get(i).setDY(0.0);
+				
+			}
+			
+			//for MrRocheObjects
+			if(allGameObjects.get(i) instanceof MrRocheObject){
+				((MrRocheObject) allGameObjects.get(i)).setCrazyDX();
+			}	
+		}  // END OF MAIN LOOP TO RUN THROUGH ALL OBJECTS
+		
+
+		//Clean up list
+		for(int i = 0; i<casualties.size(); ++i){
+			allGameObjects.remove(casualties.get(i).intValue());
+		}
+		
+	}
 	
 	public void checkBounds(){
 
@@ -121,6 +170,15 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		*/
 		
 		
+	}
+	
+	
+	public void doMrRocheSpawn(){
+		MrRocheObject mrRObj1;
+		mrRObj1 = new MrRocheObject(panelW,panelH);
+		mrRObj1.setDX(Math.random()+.01);
+		mrRObj1.setDY(Math.random()*10);
+		allGameObjects.add(mrRObj1);
 	}
 	
 
