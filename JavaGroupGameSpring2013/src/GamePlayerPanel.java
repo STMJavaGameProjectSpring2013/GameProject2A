@@ -47,9 +47,17 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
                 decholol.setDX(5);
                 decholol.setDY(.5);
                 
+                AlexvcObject alexvcObj;
+                alexvcObj = new AlexvcObject((int) w/2, (int) h/2);
+                alexvcObj.setDX(0);
+                alexvcObj.setDY(0);
+                
+                
+                
 		//allMrRocheObjects.add(mrRocheObj1);
 		allGameObjects.add(mrRocheObj1);
 		allGameObjects.add(decholol);
+		allGameObjects.add(alexvcObj);
 		
         // decholol=new DeachoObject(200,200);
 		//decholol.setDX(9.0);
@@ -83,6 +91,9 @@ public void drawAllGameObjects(Graphics g){
                         if(allGameObjects.get(i) instanceof DeachoObject){
 				allGameObjects.get(i).drawObject(g);
 			}
+                        if(allGameObjects.get(i) instanceof AlexvcObject){
+            				allGameObjects.get(i).drawObject(g);
+            			}
 			
 		}
 	}
