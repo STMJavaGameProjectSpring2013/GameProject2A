@@ -16,7 +16,7 @@ public class JavaGroupGameSpring2013 {
 	public static void main(String[] args) {
 		
 		//Start of the game, build a frame
-		f = new JFrame("The Game with No Name Right Now");
+		f = new JFrame("Daddy owns this game.");
 		f.setSize(fWidth, fHeight);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -24,7 +24,8 @@ public class JavaGroupGameSpring2013 {
 		f.add(p);
 		
 		f.setVisible(true);
-		
+                //Added by David Eacho because i kept accidentally resizing the window and getting tons of useless gray stuff... hehehe... my bad
+		f.setResizable(false);
 
 	}
 

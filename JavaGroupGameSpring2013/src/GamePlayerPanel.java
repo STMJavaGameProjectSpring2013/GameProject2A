@@ -26,6 +26,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	//GameObject testObject;
 	//MrRocheObject mrRTest;
 	ArrayList<MrRocheObject> allMrRocheObjects = new ArrayList<MrRocheObject>();
+        
 	ArrayList<GameObject> allGameObjects = new ArrayList<GameObject>();
        // DeachoObject decholol;
 	Timer t;
@@ -40,9 +41,15 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		mrRocheObj1 = new MrRocheObject((int)(w/2), (int)(h/2));
 		mrRocheObj1.setDX(0.25);
 		mrRocheObj1.setDY(4.0);
+                
+                DeachoObject decholol;
+                decholol=new DeachoObject((int) w/4,(int)h/6);
+                decholol.setDX(5);
+                decholol.setDY(.5);
+                
 		//allMrRocheObjects.add(mrRocheObj1);
 		allGameObjects.add(mrRocheObj1);
-		
+		allGameObjects.add(decholol);
 		
         // decholol=new DeachoObject(200,200);
 		//decholol.setDX(9.0);
@@ -71,6 +78,9 @@ public void drawAllGameObjects(Graphics g){
 		int listLength = allGameObjects.size();
 		for(int i = 0; i < listLength; ++i){
 			if(allGameObjects.get(i) instanceof MrRocheObject){
+				allGameObjects.get(i).drawObject(g);
+			}
+                        if(allGameObjects.get(i) instanceof DeachoObject){
 				allGameObjects.get(i).drawObject(g);
 			}
 			
