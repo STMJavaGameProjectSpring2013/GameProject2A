@@ -167,7 +167,7 @@ public void drawAllGameObjects(Graphics g){
 		for(int i = 0; i < listLength; ++i){
 			allGameObjects.get(i).moveObject();
 			allGameObjects.get(i).checkBounds(panelW,panelH);
-			allGameObjects.get(i).checkCollision(allGameObjects);
+			checkCollision(allGameObjects.get(i));
 			
 			//Now do stuff for Spawning....
 			if(allGameObjects.get(i).checkSpawnTime()==true){
@@ -227,9 +227,73 @@ public void drawAllGameObjects(Graphics g){
 		return panelH;
 	}
 	
+	
+	public void checkCollision(GameObject testObject){
+		
+		GameObject otherObject;
+		//Check all the objects and handle any collisions....
+		for(int i = 0; i < allGameObjects.size(); ++i){
+			otherObject = allGameObjects.get(i);
+			
+			if(testObject != otherObject){
+				if(isACollision(testObject, otherObject) ==true){
+					//do something
+					System.out.println("Collision between " + testObject.getObjIDString() + " and " + otherObject.getObjIDString());
+					bounceIt(testObject, otherObject);
+				}
+			}
+			
+		}
+	}
+			
+
+
+
+
+	public boolean isACollision(GameObject testObject, GameObject otherObject) {
+		boolean whatToReturn = true;
+		
+		if ((otherObject.getBBoxX()+otherObject.getBBoxW()) < testObject.getBBoxX()) {
+			whatToReturn = false;
+		} else if (otherObject.getBBoxX() > testObject.getBBoxX()+testObject.getBBoxW()) {
+			whatToReturn = false;
+	
+		} else if ((otherObject.getBBoxY()+otherObject.getBBoxH()) < testObject.getBBoxY()) {
+			whatToReturn = false;
+		} else if (otherObject.getBBoxY() > (testObject.getBBoxY()+testObject.getBBoxH())) {
+			whatToReturn = false;
+		} 
+
+		return whatToReturn;
+	}
 
 	
 	
+	
+	public void bounceIt(GameObject testObject, GameObject otherObject){
+		 int difference;
+		if((testObject.getBBoxX()+testObject.getBBoxW())>= otherObject.getBBoxX()){
+			difference =(testObject.getBBoxX()+ testObject.getBBoxW()) - otherObject.getBBoxX();
+			testObject.setXLoc(testObject.getXLoc()-(int)(difference/2)-1);
+			otherObject.setXLoc(otherObject.getXLoc()+ (int)(difference/2)+1);
+		} else if((otherObject.getBBoxX()+otherObject.getBBoxW())>= testObject.getBBoxX()){
+				difference = (otherObject.getBBoxX()+otherObject.getBBoxW()) - testObject.getBBoxX();
+				otherObject.setXLoc(otherObject.getXLoc()-(int)(difference/2)-1);
+				testObject.setXLoc(testObject.getXLoc()+ (int)(difference/2)+1);
+			
+		}
+		
+		//switch dx and dy
+		double tempX = testObject.getDX();
+		testObject.setDX(otherObject.getDX());
+		otherObject.setDX(tempX);
+		
+		double tempY = testObject.getDY();
+		testObject.setDY(otherObject.getDY());
+		otherObject.setDY(tempY);
+		
+		repaint();
+	}
 	
 
 }

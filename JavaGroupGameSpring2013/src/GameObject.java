@@ -202,6 +202,7 @@ public class GameObject {
 				if(isACollision(testObject) ==true){
 					//do something
 					System.out.println("Collision between " + this.getObjIDString() + " and " + testObject.getObjIDString());
+					bounceIt(testObject);
 				}
 			}
 			
@@ -226,13 +227,35 @@ public class GameObject {
 		} else if (gameObj.getBBoxY() > (this.getBBoxY()+this.getBBoxH())) {
 			whatToReturn = false;
 		} 
-		
-		
-		
+
 		return whatToReturn;
 	}
 
 	public String getObjIDString(){
 		return objIDString;
+	}
+	
+	public void bounceIt(GameObject otherObj){
+		 int difference;
+		if((this.getBBoxX()+this.getBBoxW())>= otherObj.getBBoxX()){
+			difference =(this.getBBoxX()+ this.getBBoxW()) - otherObj.getBBoxX();
+			this.setXLoc(this.getXLoc()-(int)(difference/2)-1);
+			otherObj.setXLoc(otherObj.getXLoc()+ (int)(difference/2)+1);
+		} else if((otherObj.getBBoxX()+otherObj.getBBoxW())>= this.getBBoxX()){
+				difference = (otherObj.getBBoxX()+otherObj.getBBoxW()) - this.getBBoxX();
+				otherObj.setXLoc(otherObj.getXLoc()-(int)(difference/2)-1);
+				this.setXLoc(this.getXLoc()+ (int)(difference/2)+1);
+			
+		}
+		
+		//switch dx and dy
+		double tempX = this.getDX();
+		this.setDX(otherObj.getDX());
+		otherObj.setDX(tempX);
+		
+		double tempY = this.getDY();
+		this.setDY(otherObj.getDY());
+		otherObj.setDY(tempY);
+		
 	}
 }
