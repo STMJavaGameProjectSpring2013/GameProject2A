@@ -16,7 +16,7 @@ public class JavaGroupGameSpring2013 {
 	public static void main(String[] args) {
 		
 		//Start of the game, build a frame
-		f = new JFrame("Daddy owns this game.");
+		f = new JFrame("Mamma said baby owns the game.");
 		f.setSize(fWidth, fHeight);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

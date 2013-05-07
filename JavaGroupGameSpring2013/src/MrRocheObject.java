@@ -14,15 +14,18 @@ public class MrRocheObject extends GameObject {
 	Image image135;
 	
 	boolean pictureLoaded = false;
+	static int MrRocheObjCount = 0;
+	int whichMrRoche=0;
 
-	public MrRocheObject(int x, int y) {
-		super(x, y);
+	public MrRocheObject(String typeName, int x, int y) {
+		super(typeName, x, y);
 		
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		InputStream input1 = ClassLoader.getSystemResourceAsStream("MrRocheImage1A.png");
 		InputStream input2 = cl.getSystemResourceAsStream("MrRocheImage2A.png");
 		InputStream input3 = ClassLoader.getSystemResourceAsStream("MrRocheImage8A.png");
-		
+		MrRocheObjCount++;
+		whichMrRoche=MrRocheObjCount;
 		
 		try{
 			
@@ -64,7 +67,7 @@ public class MrRocheObject extends GameObject {
 			g.drawRect(xLoc-(int)(objW/2)+bBoxExtraX, yLoc-(int)(objH/2)+bBoxExtraY,bBoxW, bBoxH);
 			
 			g.setColor(Color.WHITE);
-			g.drawString(("Mr.Roche "+whoAmI),  xLoc -(int)(objW/4) , yLoc+(int)(objH/2));
+			g.drawString(("Mr.Roche "+whichMrRoche),  xLoc -(int)(objW/4) , yLoc+(int)(objH/2));
 			
 		} else {
 		g.setColor(objColor);

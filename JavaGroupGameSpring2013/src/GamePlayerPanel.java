@@ -38,26 +38,27 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		
 		
 		MrRocheObject mrRocheObj1;
-		mrRocheObj1 = new MrRocheObject((int)(w/2), (int)(h/2));
+		mrRocheObj1 = new MrRocheObject("Mr. Roche", (int)(w/2), (int)(h/2));
 		mrRocheObj1.setDX(0.25);
 		mrRocheObj1.setDY(4.0);
                 
                 DeachoObject decholol;
-                decholol=new DeachoObject((int) w/4,(int)h/6);
+                decholol=new DeachoObject("EachoObj", (int) w/4,(int)h/6);
                 decholol.setDX(5);
                 decholol.setDY(.5);
                 
-                AlexvcObject alexvcObj;
-                alexvcObj = new AlexvcObject((int) w/2, (int) h/2);
-                alexvcObj.setDX(0);
-                alexvcObj.setDY(0);
+                //There is no Alex VC Class That needs to be added.
+               // AlexvcObject alexvcObj;
+               // alexvcObj = new AlexvcObject((int) w/2, (int) h/2);
+               // alexvcObj.setDX(0);
+               // alexvcObj.setDY(0);
                 
                 
                 
 		//allMrRocheObjects.add(mrRocheObj1);
 		allGameObjects.add(mrRocheObj1);
 		allGameObjects.add(decholol);
-		allGameObjects.add(alexvcObj);
+		//allGameObjects.add(alexvcObj);
 		
         // decholol=new DeachoObject(200,200);
 		//decholol.setDX(9.0);
@@ -91,10 +92,13 @@ public void drawAllGameObjects(Graphics g){
                         if(allGameObjects.get(i) instanceof DeachoObject){
 				allGameObjects.get(i).drawObject(g);
 			}
-                        if(allGameObjects.get(i) instanceof AlexvcObject){
-            				allGameObjects.get(i).drawObject(g);
-            			}
+                        
+            /*  Alexvc object doenst exist on the git hub.    
+            *  if(allGameObjects.get(i) instanceof AlexvcObject){
+            *	 allGameObjects.get(i).drawObject(g);
+            * }
 			
+			*/
 		}
 	}
 	
@@ -196,7 +200,7 @@ public void drawAllGameObjects(Graphics g){
 	
 	public void doMrRocheSpawn(){
 		MrRocheObject mrRObj1;
-		mrRObj1 = new MrRocheObject(panelW,panelH);
+		mrRObj1 = new MrRocheObject("Mr. Roche", panelW,panelH);
 		mrRObj1.setDX(Math.random()+.01);
 		mrRObj1.setDY(Math.random()*10);
 		allGameObjects.add(mrRObj1);

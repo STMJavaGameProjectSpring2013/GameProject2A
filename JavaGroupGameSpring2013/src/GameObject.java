@@ -1,10 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 
 public class GameObject {
 
-	static int count = 0;
+	static int objectIDNum = 0;
 	//Instance Variables
 	int xLoc, yLoc; 
 	int objW; 
@@ -15,6 +16,7 @@ public class GameObject {
 	//X and Y coordinates are relative(Extra) to xLoc and yLoc
 	int bBoxExtraX, bBoxExtraY;
 	int bBoxW, bBoxH;
+	String objIDString = null;
 	
 	
 	long reproductionCycle = 15000L;  //15 Seconds in Milliseconds
@@ -27,17 +29,20 @@ public class GameObject {
 	Color objColor = Color.white;
 	
 	//Constructors
-	public GameObject(int w, int h) {
-		count++;
-		whoAmI = count;
+	public GameObject(String type, int w, int h) {
+		objectIDNum++;
+		whoAmI = objectIDNum;
+		objIDString = new String ("Obj# ").concat(Integer.toString(objectIDNum) + "("+ type + ")");
 		//System.out.println("I just created a game object");
 		xLoc = (int)(Math.random()*(w-100))+50;
 		yLoc = (int)(Math.random()*(w-100))+50;
 		timeOfCreation = System.currentTimeMillis();
 		nextSpawnTime = timeOfCreation+reproductionCycle+(long)(Math.random()*8000);
 		checkOutTime = timeOfCreation+lifeCycle+(long)(Math.random()*10000);
-		System.out.println("object Number " + count + " time of creation: " + timeOfCreation);
-		System.out.println("CheckoutTime for " + count + " is " + checkOutTime);
+		System.out.println("object Number " + objectIDNum + " time of creation: " + timeOfCreation);
+		System.out.println("CheckoutTime for " + objectIDNum + " is " + checkOutTime);
+		System.out.println("ObjIDString is: " + objIDString);
+		
 	}
 
 	
@@ -185,5 +190,49 @@ public class GameObject {
 	public int getBBoxH(){
 		return bBoxH;
 	}
+	
+	public void checkCollision(ArrayList<GameObject> objectList){
+		
+		GameObject testObject;
+		//Check all the objects and handle any collisions....
+		for(int i = 0; i < objectList.size(); ++i){
+			testObject = objectList.get(i);
+			
+			if(testObject != this){
+				if(isACollision(testObject) ==true){
+					//do something
+					System.out.println("Collision between " + this.getObjIDString() + " and " + testObject.getObjIDString());
+				}
+			}
+			
+			
+		}
+		
+		
+		
+	}
+	
+	public boolean isACollision(GameObject gameObj) {
+		
+		boolean whatToReturn = true;
+		
+		if ((gameObj.getBBoxX()+gameObj.getBBoxW()) < this.getBBoxX()) {
+			whatToReturn = false;
+		} else if (gameObj.getBBoxX() > this.getBBoxX()+this.getBBoxW()) {
+			whatToReturn = false;
+	
+		} else if ((gameObj.getBBoxY()+gameObj.getBBoxH()) < this.getBBoxY()) {
+			whatToReturn = false;
+		} else if (gameObj.getBBoxY() > (this.getBBoxY()+this.getBBoxH())) {
+			whatToReturn = false;
+		} 
+		
+		
+		
+		return whatToReturn;
+	}
 
+	public String getObjIDString(){
+		return objIDString;
+	}
 }
