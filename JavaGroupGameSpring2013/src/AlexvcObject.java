@@ -11,9 +11,9 @@ public class AlexvcObject extends GameObject{
 	private int[] yList = {y-25, y-25, y, y+25, y+25};
 
 
-	public AlexvcObject(int w, int h){
+	public AlexvcObject(String shapeName, int w, int h){
 		
-		super("temp",w, h);
+		super(shapeName, w, h);
 		
 		
 		
@@ -22,6 +22,7 @@ public class AlexvcObject extends GameObject{
 	public void paintComponent(Graphics g){
 		
 		g.setColor(Color.BLUE);
+		g.fillRect(250, 250, 100, 100);
 		g.fillPolygon(xList, yList, 5);
 		
 		

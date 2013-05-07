@@ -51,10 +51,10 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
                 decholol.setDY(.5);
                 
                 //There is no Alex VC Class That needs to be added.
-               // AlexvcObject alexvcObj;
-               // alexvcObj = new AlexvcObject((int) w/2, (int) h/2);
-               // alexvcObj.setDX(0);
-               // alexvcObj.setDY(0);
+                AlexvcObject alexvcObj;
+                alexvcObj = new AlexvcObject("Alex", (int) w/2, (int) h/2);
+                alexvcObj.setDX(0);
+                alexvcObj.setDY(0);
                 
                 
                 
