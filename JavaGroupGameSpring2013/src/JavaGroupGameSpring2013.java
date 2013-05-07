@@ -24,8 +24,7 @@ public class JavaGroupGameSpring2013 {
 		f.add(p);
 		
 		f.setVisible(true);
-                //Added by David Eacho because i kept accidentally resizing the window and getting tons of useless gray stuff... hehehe... my bad
-				//f.setResizable(false);
+                f.setResizable(false);
 				//Changed the window so game resizes with window... Mr. Roche.
 	}
 
