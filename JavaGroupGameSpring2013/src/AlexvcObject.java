@@ -13,7 +13,7 @@ public class AlexvcObject extends GameObject{
 
 	public AlexvcObject(int w, int h){
 		
-		super(w, h);
+		super("temp",w, h);
 		
 		
 		
