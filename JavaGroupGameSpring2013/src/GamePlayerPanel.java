@@ -61,7 +61,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		//allMrRocheObjects.add(mrRocheObj1);
 		allGameObjects.add(mrRocheObj1);
 		allGameObjects.add(decholol);
-		//allGameObjects.add(alexvcObj);
+		allGameObjects.add(alexvcObj);
 		
         // decholol=new DeachoObject(200,200);
 		//decholol.setDX(9.0);
