@@ -82,7 +82,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		if(myFrame.getHeight() != panelH){
 			panelH = myFrame.getHeight();
 		}
-		g.setColor(bColor);
+		g.setColor(Color.gray);
 		g.fillRect(0, 0, myFrame.getWidth(), myFrame.getHeight());
 		
 	
@@ -100,16 +100,16 @@ public void drawAllGameObjects(Graphics g){
 			if(allGameObjects.get(i) instanceof MrRocheObject){
 				allGameObjects.get(i).drawObject(g);
 			}
-                        if(allGameObjects.get(i) instanceof DeachoObject){
-				allGameObjects.get(i).drawObject(g);
+                    if(allGameObjects.get(i) instanceof DeachoObject){
+			allGameObjects.get(i).drawObject(g);
 			}
                         
-            /*  Alexvc object doenst exist on the git hub.    
-            *  if(allGameObjects.get(i) instanceof AlexvcObject){
-            *	 allGameObjects.get(i).drawObject(g);
-            * }
+            //  Alexvc object doenst exist on the git hub.    
+                    if(allGameObjects.get(i) instanceof AlexvcObject){
+                        allGameObjects.get(i).drawObject(g);
+                    }
 			
-			*/
+			
 		}
 	}
 	
