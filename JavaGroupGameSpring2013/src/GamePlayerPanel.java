@@ -47,14 +47,19 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
                 
                 DeachoObject decholol;
                 decholol=new DeachoObject("EachoObj", (int) w/4,(int)h/6);
+<<<<<<< HEAD
                 decholol.setDX(1);
                 decholol.setDY(1);
+=======
+                decholol.setDX(5);
+                decholol.setDY(5);
+>>>>>>> Spawning new ones
                 
                 //There is no Alex VC Class That needs to be added.
                 AlexvcObject alexvcObj;
                 alexvcObj = new AlexvcObject("Alex", (int) w/2, (int) h/2);
-                alexvcObj.setDX(1);
-                alexvcObj.setDY(1);
+                alexvcObj.setDX(2);
+                alexvcObj.setDY(2);
                 
                 
                 
@@ -176,7 +181,12 @@ public void drawAllGameObjects(Graphics g){
 				if(allGameObjects.get(i) instanceof MrRocheObject){
 					doMrRocheSpawn();
 				}
+				if(allGameObjects.get(i) instanceof AlexvcObject){
+					doAlexSpawn();
+				}
 			}
+			
+			
 			//And do stuff for Logans Runs Timed obsolescence....
 			if(allGameObjects.get(i).timeToKickIt() == true){
 				System.out.println("it is time to Kick It for arrayList slot: " + i);
@@ -218,6 +228,17 @@ public void drawAllGameObjects(Graphics g){
 		mrRObj1.setDX(Math.random()+.01);
 		mrRObj1.setDY(Math.random()*10);
 		allGameObjects.add(mrRObj1);
+	}
+	
+	public void doAlexSpawn(){
+		
+		System.out.println("SPAWN");
+		AlexvcObject alexvcObj2;
+		alexvcObj2 = new AlexvcObject("Alex", panelW, panelH);
+		alexvcObj2.setDX(2);
+		alexvcObj2.setDY(2);
+		allGameObjects.add(alexvcObj2);
+		
 	}
 	
 	
