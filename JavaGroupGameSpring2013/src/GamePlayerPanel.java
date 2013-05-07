@@ -53,8 +53,8 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
                 //There is no Alex VC Class That needs to be added.
                 AlexvcObject alexvcObj;
                 alexvcObj = new AlexvcObject("Alex", (int) w/2, (int) h/2);
-                alexvcObj.setDX(0);
-                alexvcObj.setDY(0);
+                alexvcObj.setDX(1);
+                alexvcObj.setDY(1);
                 
                 
                 
@@ -104,8 +104,10 @@ public void drawAllGameObjects(Graphics g){
 			allGameObjects.get(i).drawObject(g);
 			}
                         
-            //  Alexvc object doenst exist on the git hub.    
+            
                     if(allGameObjects.get(i) instanceof AlexvcObject){
+                    	//System.out.println("Trying to draw an alex");
+                    	//System.out.println("His dx dy are: " + allGameObjects.get(i).getDX() + ", " + allGameObjects.get(i).getDY());
                         allGameObjects.get(i).drawObject(g);
                     }
 			
