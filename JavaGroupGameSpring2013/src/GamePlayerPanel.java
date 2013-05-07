@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,6 +23,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	private int panelH;
 	private Color bColor;
 	private double dxRate = 0.01;
+	private JFrame myFrame;
 	
 	//GameObject testObject;
 	//MrRocheObject mrRTest;
@@ -31,7 +33,8 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
        // DeachoObject decholol;
 	Timer t;
 	
-	public GamePlayerPanel(int w, int h){
+	public GamePlayerPanel(int w, int h, JFrame ff){
+		myFrame = ff;
 		panelW = w;
 		panelH = h;	
 		bColor = new Color((int)(Math.random()*25),(int)(Math.random()*25),(int)(Math.random()*150)+50);
@@ -71,8 +74,16 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 	
 	
 	public void paintComponent(Graphics g){
+		
+		if(myFrame.getWidth() != panelW){
+			panelW = myFrame.getWidth();
+		}
+		
+		if(myFrame.getHeight() != panelH){
+			panelH = myFrame.getHeight();
+		}
 		g.setColor(bColor);
-		g.fillRect(0, 0, panelW, panelH);
+		g.fillRect(0, 0, myFrame.getWidth(), myFrame.getHeight());
 		
 	
 		//drawMrRocheObjects(g);
@@ -156,6 +167,7 @@ public void drawAllGameObjects(Graphics g){
 		for(int i = 0; i < listLength; ++i){
 			allGameObjects.get(i).moveObject();
 			allGameObjects.get(i).checkBounds(panelW,panelH);
+			allGameObjects.get(i).checkCollision(allGameObjects);
 			
 			//Now do stuff for Spawning....
 			if(allGameObjects.get(i).checkSpawnTime()==true){
@@ -204,6 +216,15 @@ public void drawAllGameObjects(Graphics g){
 		mrRObj1.setDX(Math.random()+.01);
 		mrRObj1.setDY(Math.random()*10);
 		allGameObjects.add(mrRObj1);
+	}
+	
+	
+	public int getPanelW(){
+		return panelW;
+	}
+	
+	public int getPanelH(){
+		return panelH;
 	}
 	
 

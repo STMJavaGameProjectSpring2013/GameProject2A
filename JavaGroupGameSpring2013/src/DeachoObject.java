@@ -41,6 +41,7 @@ public class DeachoObject extends GameObject {
         g.drawString("Help,  Help", xLoc-175, yLoc-50);
         g.drawString("I've fallen and I can't" , xLoc-175, yLoc-35);
         g.drawString("get my dx or dy set...", xLoc-175, yLoc-20);
+    	g.drawString(this.getObjIDString(),  xLoc - 175 , yLoc-5);
         
     }
 }
