@@ -15,14 +15,13 @@ public class DeachoObject extends GameObject {
     
     private int[] octoX,octoY;
     private int sidelength;
-    private int xLoc,yLoc;
     
     public DeachoObject(String typeName, int x, int y){
         super(typeName, x,y);
-        xLoc=x;
-        yLoc=y;
         sidelength=65;
         
+        this.setBBoxExtras(0,0,2*sidelength-11, sidelength+1);
+
         /*THIS NOTE IS TO SAY
          *
          * That we successfully synched stuff.
@@ -36,12 +35,10 @@ public class DeachoObject extends GameObject {
     }
     public void drawObject(Graphics g){
         g.setColor(new Color(255,69,0));
-        g.fillRect(45,55,2*sidelength-10,sidelength);
+        g.fillRect(xLoc,yLoc,2*sidelength-10,sidelength);
+        g.setColor(Color.blue);
+        g.drawString("#SWAGBOT2013", xLoc+15, yLoc+sidelength/2);
         g.setColor(Color.BLACK);
-        g.drawString("Help,  Help", xLoc-175, yLoc-50);
-        g.drawString("I've fallen and I can't" , xLoc-175, yLoc-35);
-        g.drawString("get my dx or dy set...", xLoc-175, yLoc-20);
-    	g.drawString(this.getObjIDString(),  xLoc - 175 , yLoc-5);
         
     }
 }

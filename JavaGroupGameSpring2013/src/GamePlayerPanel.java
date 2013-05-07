@@ -47,8 +47,8 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
                 
                 DeachoObject decholol;
                 decholol=new DeachoObject("EachoObj", (int) w/4,(int)h/6);
-                decholol.setDX(5);
-                decholol.setDY(.5);
+                decholol.setDX(1);
+                decholol.setDY(1);
                 
                 //There is no Alex VC Class That needs to be added.
                 AlexvcObject alexvcObj;
