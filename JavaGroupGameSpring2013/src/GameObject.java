@@ -191,71 +191,13 @@ public class GameObject {
 		return bBoxH;
 	}
 	
-	public void checkCollision(ArrayList<GameObject> objectList){
-		
-		GameObject testObject;
-		//Check all the objects and handle any collisions....
-		for(int i = 0; i < objectList.size(); ++i){
-			testObject = objectList.get(i);
-			
-			if(testObject != this){
-				if(isACollision(testObject) ==true){
-					//do something
-					System.out.println("Collision between " + this.getObjIDString() + " and " + testObject.getObjIDString());
-					bounceIt(testObject);
-				}
-			}
-			
-			
-		}
-		
-		
-		
-	}
 	
-	public boolean isACollision(GameObject gameObj) {
-		
-		boolean whatToReturn = true;
-		
-		if ((gameObj.getBBoxX()+gameObj.getBBoxW()) < this.getBBoxX()) {
-			whatToReturn = false;
-		} else if (gameObj.getBBoxX() > this.getBBoxX()+this.getBBoxW()) {
-			whatToReturn = false;
 	
-		} else if ((gameObj.getBBoxY()+gameObj.getBBoxH()) < this.getBBoxY()) {
-			whatToReturn = false;
-		} else if (gameObj.getBBoxY() > (this.getBBoxY()+this.getBBoxH())) {
-			whatToReturn = false;
-		} 
-
-		return whatToReturn;
-	}
+	
 
 	public String getObjIDString(){
 		return objIDString;
 	}
 	
-	public void bounceIt(GameObject otherObj){
-		 int difference;
-		if((this.getBBoxX()+this.getBBoxW())>= otherObj.getBBoxX()){
-			difference =(this.getBBoxX()+ this.getBBoxW()) - otherObj.getBBoxX();
-			this.setXLoc(this.getXLoc()-(int)(difference/2)-1);
-			otherObj.setXLoc(otherObj.getXLoc()+ (int)(difference/2)+1);
-		} else if((otherObj.getBBoxX()+otherObj.getBBoxW())>= this.getBBoxX()){
-				difference = (otherObj.getBBoxX()+otherObj.getBBoxW()) - this.getBBoxX();
-				otherObj.setXLoc(otherObj.getXLoc()-(int)(difference/2)-1);
-				this.setXLoc(this.getXLoc()+ (int)(difference/2)+1);
-			
-		}
-		
-		//switch dx and dy
-		double tempX = this.getDX();
-		this.setDX(otherObj.getDX());
-		otherObj.setDX(tempX);
-		
-		double tempY = this.getDY();
-		this.setDY(otherObj.getDY());
-		otherObj.setDY(tempY);
-		
-	}
+	
 }
