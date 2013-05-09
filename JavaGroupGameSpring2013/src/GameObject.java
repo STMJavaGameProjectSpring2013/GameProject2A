@@ -50,6 +50,13 @@ public class GameObject {
 	public void moveObject(){
 		xLoc += (int)dx;
 		yLoc += (int)dy;
+		
+		// made by alex to keep objects from stopping
+		if(dx == 0 && dy == 0){
+			dx = 0.5;
+			dy = 0.5;
+		}
+		
 	}
 	
 	public void drawObject(Graphics g){

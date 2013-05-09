@@ -232,7 +232,7 @@ public void drawAllGameObjects(Graphics g){
 	
 	public void doAlexvcSpawn(){
 		
-		System.out.println("SPAWN");
+		//System.out.println("SPAWN");
 		AlexvcObject alexvcObj2;
 		alexvcObj2 = new AlexvcObject("Alex", panelW, panelH);
 		alexvcObj2.setDX(2);
