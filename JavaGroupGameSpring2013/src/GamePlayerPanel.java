@@ -46,7 +46,7 @@ public class GamePlayerPanel extends JPanel implements ActionListener {
 		mrRocheObj1.setDY(4.0);
                 
                 DeachoObject decholol;
-                decholol=new DeachoObject("EachoObj", (int) w/4,(int)h/6);
+                decholol=new DeachoObject("EachoObj", (int) w/4,(int)h/6,((int) Math.random()*3));
 
                 decholol.setDX(1);
                 decholol.setDY(1);
@@ -184,6 +184,9 @@ public void drawAllGameObjects(Graphics g){
 				if(allGameObjects.get(i) instanceof AlexvcObject){
 					doAlexvcSpawn();
 				}
+                                if(allGameObjects.get(i) instanceof DeachoObject){
+                                        doswagbotSpawn();
+                                }
 			}
 			
 			
@@ -240,6 +243,16 @@ public void drawAllGameObjects(Graphics g){
 		allGameObjects.add(alexvcObj2);
 		
 	}
+        public void doswagbotSpawn(){
+            System.out.println("#SUCHSPAWN");
+                DeachoObject swagbot2014;
+                swagbot2014 = new DeachoObject("#SwagYolo",panelW,panelH,((int) Math.random()*3));
+                swagbot2014.setDX(2);
+                swagbot2014.setDY(20);
+                allGameObjects.add(swagbot2014);
+            
+            
+        }
 	
 	
 	public int getPanelW(){

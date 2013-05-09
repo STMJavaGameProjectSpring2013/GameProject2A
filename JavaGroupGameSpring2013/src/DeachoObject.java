@@ -15,17 +15,16 @@ import javax.swing.Timer;
  */
 public class DeachoObject extends GameObject implements ActionListener{
     private Timer swagbot;
-    private int[] octoX,octoY;
     private int sidelength;
     private int r,g,b,c;
-    public DeachoObject(String typeName, int x, int y){
+    public DeachoObject(String typeName, int x, int y, int yolocounter){
         super(typeName, x,y);
         r=g=b=0;
         sidelength=65;
         Timer t = new Timer(1,this);
         this.setBBoxExtras(0,0,2*sidelength-11, sidelength+1);
         t.start();
-        
+        c=yolocounter;
     }
     public void drawObject(Graphics gelf){
         gelf.setColor(new Color(r,g,b));
