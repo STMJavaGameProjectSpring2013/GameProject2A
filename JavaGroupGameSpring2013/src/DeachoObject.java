@@ -22,7 +22,7 @@ public class DeachoObject extends GameObject implements ActionListener{
         r=g=b=0;
         sidelength=65;
         Timer t = new Timer(1,this);
-        this.setBBoxExtras(0,0,2*sidelength-11, sidelength+1);
+        this.setBBoxExtras(0,0,2*sidelength-10,sidelength);
         t.start();
         c=yolocounter;
     }
@@ -31,7 +31,8 @@ public class DeachoObject extends GameObject implements ActionListener{
         gelf.fillRect(xLoc,yLoc,2*sidelength-10,sidelength);
         gelf.setColor(Color.blue);
         gelf.drawString("#SWAGBOT2013", xLoc+15, yLoc+sidelength/2);
-        gelf.setColor(Color.BLACK);
+        gelf.setColor(new Color(b,g,r));
+        gelf.drawRect(xLoc+bBoxExtraX,yLoc+bBoxExtraY,bBoxW,bBoxH);
         
     }
 
