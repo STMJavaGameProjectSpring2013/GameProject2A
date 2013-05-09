@@ -182,7 +182,7 @@ public void drawAllGameObjects(Graphics g){
 					doMrRocheSpawn();
 				}
 				if(allGameObjects.get(i) instanceof AlexvcObject){
-					doAlexSpawn();
+					doAlexvcSpawn();
 				}
 			}
 			
@@ -230,7 +230,7 @@ public void drawAllGameObjects(Graphics g){
 		allGameObjects.add(mrRObj1);
 	}
 	
-	public void doAlexSpawn(){
+	public void doAlexvcSpawn(){
 		
 		System.out.println("SPAWN");
 		AlexvcObject alexvcObj2;
